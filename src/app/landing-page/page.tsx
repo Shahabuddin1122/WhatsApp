@@ -3,12 +3,14 @@ import MessageCard from "@/components/MessageCard";
 import avatarImage from "../../../public/avatar.svg";
 import profile from "../../../public/profile.png";
 import Button from "@/components/Button";
+import Default from "@/components/Default";
+import Chat from "@/components/Chat";
 
 const landingPage = () => {
     return (
         <>
             <div className={"w-full h-[100px] bg-green-600 flex justify-center"}>
-                <div className={"w-11/12 h-[710px] mt-5 bg-slate-100  flex"}>
+                <div className={"w-11/12 md:h-[690px] lg:h-[710px] mt-5 bg-slate-100  flex"}>
                     <div className={"sm:w-1/2 md:w-2/5 lg:w-1/3 h-full bg-white shadow-xl  relative"}>
                         <div className={"w-full h-12 px-2 flex justify-between items-center bg-slate-100"}>
                             <div className={"w-10 h-10 flex justify-center items-center rounded-full"}>
@@ -65,29 +67,13 @@ const landingPage = () => {
                         <div className={"w-full h-[55px] absolute bottom-0 border-t border-gray-300 bg-white flex justify-center items-center shadow-2xl"}>
                             <div className={"w-11/12 h-[90%] flex gap-x-5 items-center"}>
                                 <Image src={"/whats_app.png"} alt={"Whatsapp"} height={35} width={35}/>
-                                <p className={"text-green-700 text-lg "}>Get WhatsApp for Windows <span
-                                    className={"text-2xl ml-2"}> &gt; </span></p>
+                                <p className={"text-green-700 text-md md:text-sm "}>Get WhatsApp for Windows <span
+                                    className={"md:text-xs text-2xl ml-2"}> &gt; </span></p>
                             </div>
                         </div>
                     </div>
                     <div className={" sm:w-1/2 md:w-3/5 lg:w-2/3 h-full "}>
-                        <div className={"h-[655px] flex justify-center items-center"}>
-                            <div className={"h-[550px] sm:w-full md:w-2/3 lg:w-1/2"}>
-                                <div className={"w-full h-[200px] relative"}>
-                                    <Image src={"/groupcall.jpg"} alt={"groupcall"} fill objectFit={"contain"}/>
-                                </div>
-                                <div className={"text-center my-5"}>
-                                    <p className={"text-2xl font-extralight my-4"}>Download WhatsApp for Windows</p>
-                                    <p className={"text-sm tracking-wider text-gray-500"}>Make calls, share your screen and get a faster experience when you download the Windows app.</p>
-                                </div>
-                                <div className={"flex justify-center"}>
-                                    <Button text={"Get from MictroSoft Store"} />
-                                </div>
-                            </div>
-                        </div>
-                        <div className={"h-[55px]"}>
-                            <p className={"text-sm text-center text-gray-500"}>🔒 Your personal messages are end to end encrypted</p>
-                        </div>
+                        <Chat/>
                     </div>
                 </div>
             </div>
