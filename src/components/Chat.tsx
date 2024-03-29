@@ -1,4 +1,6 @@
 import Image from "next/image";
+import MessageLeft from "@/components/MessageLeft";
+import MessageRight from "@/components/MessageRight";
 
 const Chat = ()=>{
     return (
@@ -22,8 +24,11 @@ const Chat = ()=>{
                     </div>
                 </div>
             </div>
-            <div className={"md:h-[590px] lg:h-[608px] w-full flex justify-center items-center relative"}>
-                <Image src={"/1288117.png"} alt={"background"} fill objectFit={"cover"} />
+            <div style={{backgroundImage:"url('/1288117.png')"}} className={"md:h-[590px] lg:h-[608px] w-full relative overflow-y-scroll"}>
+                <MessageLeft Message={"asalamualaikum"} Time={"2:12 PM"} first={true}/>
+                <MessageLeft Message={"Kemon aso?"} Time={"2:12 PM"} first={false}/>
+                <MessageRight Message={"Alhamdullah vlo.tmi kmn aso?"} Time={"2:12 PM"} first={true}/>
+                <MessageRight Message={"Check out the all-new Web Awesome AND get an exclusive lifetime discount on Font Awesome Pro!"} Time={"2:12 PM"} first={false}/>
             </div>
             <div className={"h-[55px] w-full flex justify-center items-center "}>
                 <div className={"h-[40px] w-[94%] flex justify-center items-center gap-x-4"}>

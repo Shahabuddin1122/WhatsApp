@@ -33,7 +33,7 @@ const landingPage = () => {
                                 <Image src={"/filter.svg"} alt={"filter"} width={20} height={20}/>
                             </div>
                         </div>
-                        <div className={"w-full h-[580px] relative overflow-y-scroll"}>
+                        <div className={"w-full h-[565px] relative overflow-y-scroll"}>
                             <div className={"w-full h-auto"}>
                                 <div className="flex flex-col justify-center">
                                     <MessageCard text={"Hi"} number={"+8801982711168"} time={"8:20 PM"}
