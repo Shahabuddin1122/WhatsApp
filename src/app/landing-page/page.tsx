@@ -2,22 +2,20 @@ import Image from "next/image";
 import MessageCard from "@/components/MessageCard";
 import avatarImage from "../../../public/avatar.svg";
 import profile from "../../../public/profile.png";
-import Button from "@/components/Button";
-import Default from "@/components/Default";
 import Chat from "@/components/Chat";
 
 const landingPage = () => {
     return (
         <>
-            <div className={"w-full h-[100px] bg-green-600 flex justify-center"}>
-                <div className={"w-11/12 md:h-[690px] lg:h-[710px] mt-5 bg-slate-100  flex"}>
-                    <div className={"sm:w-1/2 md:w-2/5 lg:w-1/3 h-full bg-white shadow-xl  relative"}>
+            <div className={"min-w-[765px] w-full h-[100px] bg-green-600 flex justify-center"}>
+                <div className={"w-11/12 h-[750px] mt-5 bg-slate-100  flex"}>
+                    <div className={"min-w-[350px] sm:w-1/2 md:w-2/5 lg:w-1/3 h-full bg-white shadow-xl  relative"}>
                         <div className={"w-full h-12 px-2 flex justify-between items-center bg-slate-100"}>
                             <div className={"w-10 h-10 flex justify-center items-center rounded-full"}>
                                 <Image src={"/profile.png"} alt={"next"} width={50} height={50}
                                        className={"rounded-full"}/>
                             </div>
-                            <div className={" flex justify-center items-center sm:gap-x-4 md:gap-x-8 lg:gap-x-10"}>
+                            <div className={" flex justify-center items-center gap-x-4 md:gap-x-8 lg:gap-x-10"}>
                                 <Image src={"/group.svg"} alt={"next"} width={20} height={20}/>
                                 <Image src={"/status.svg"} alt={"next"} width={20} height={20}/>
                                 <Image src={"/chat.svg"} alt={"next"} width={20} height={20}/>
@@ -33,7 +31,7 @@ const landingPage = () => {
                                 <Image src={"/filter.svg"} alt={"filter"} width={20} height={20}/>
                             </div>
                         </div>
-                        <div className={"w-full h-[565px] relative overflow-y-scroll"}>
+                        <div className={"w-full h-[600px] relative overflow-y-scroll"}>
                             <div className={"w-full h-auto"}>
                                 <div className="flex flex-col justify-center">
                                     <MessageCard text={"Hi"} number={"+8801982711168"} time={"8:20 PM"}
@@ -72,7 +70,7 @@ const landingPage = () => {
                             </div>
                         </div>
                     </div>
-                    <div className={" sm:w-1/2 md:w-3/5 lg:w-2/3 h-full "}>
+                    <div className={"min-w-[350px] lg:w-2/3 h-full "}>
                         <Chat/>
                     </div>
                 </div>

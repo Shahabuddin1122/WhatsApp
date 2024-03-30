@@ -5,7 +5,7 @@ import MessageRight from "@/components/MessageRight";
 const Chat = ()=>{
     return (
         <>
-            <div className={"h-[47px] w-full flex justify-center items-center"}>
+            <div className={"h-[47px] min-w-[350px] w-full flex justify-center items-center"}>
                 <div className={"h-[40px] w-[94%] flex justify-between"}>
                     <div className={"h-full flex items-center gap-x-2"}>
                         <Image src={"/profile.png"} alt={"profile"} width={30} height={30} className={"rounded-full"} />
@@ -24,7 +24,7 @@ const Chat = ()=>{
                     </div>
                 </div>
             </div>
-            <div style={{backgroundImage:"url('/1288117.png')"}} className={"md:h-[590px] lg:h-[608px] w-full relative overflow-y-scroll"}>
+            <div style={{backgroundImage:"url('/1288117.png')"}} className={"h-[648px] w-full relative overflow-y-scroll"}>
                 <MessageLeft Message={"asalamualaikum"} Time={"2:12 PM"} first={true}/>
                 <MessageLeft Message={"Kemon aso?"} Time={"2:12 PM"} first={false}/>
                 <MessageRight Message={"Alhamdullah vlo.tmi kmn aso?"} Time={"2:12 PM"} first={true}/>
