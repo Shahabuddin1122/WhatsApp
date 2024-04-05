@@ -1,12 +1,18 @@
+"use client"
+
 import Nav from "@/components/nav";
 import ColumnBox from "@/components/ColumnBox";
 import Button from "@/components/Button";
+import OtpModel from "@/components/OtpModel";
+import {useState} from "react";
 
 const login = ()=>{
+
 
     return (
         <>
             <div className={"w-full h-auto"}>
+                <OtpModel/>
                 <Nav/>
                 <div className={"w-3/5 h-auto bg-white shadow-2xl mx-auto relative -mt-10"}>
                     <div className={"w-full h-[30rem] flex justify-center items-center"}>
