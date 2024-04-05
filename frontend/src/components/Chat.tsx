@@ -24,13 +24,13 @@ const Chat = ()=>{
                     </div>
                 </div>
             </div>
-            <div style={{backgroundImage:"url('/1288117.png')"}} className={"h-[648px] w-full relative overflow-y-scroll"}>
+            <div style={{backgroundImage:"url('/1288117.png')"}} className={"h-[605px] w-full relative overflow-y-scroll"}>
                 <MessageLeft Message={"asalamualaikum"} Time={"2:12 PM"} first={true}/>
                 <MessageLeft Message={"Kemon aso?"} Time={"2:12 PM"} first={false}/>
                 <MessageRight Message={"Alhamdullah vlo.tmi kmn aso?"} Time={"2:12 PM"} first={true}/>
                 <MessageRight Message={"Check out the all-new Web Awesome AND get an exclusive lifetime discount on Font Awesome Pro!"} Time={"2:12 PM"} first={false}/>
             </div>
-            <div className={"h-[55px] w-full flex justify-center items-center "}>
+            <div className={"h-[50px] w-full flex justify-center items-center "}>
                 <div className={"h-[40px] w-[94%] flex justify-center items-center gap-x-4"}>
                     <div className={"flex justify-center"}>
                         <Image src={"/plus.svg"} alt={"Plus"} width={20} height={20} />

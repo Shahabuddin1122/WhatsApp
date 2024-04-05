@@ -8,7 +8,7 @@ const landingPage = () => {
     return (
         <>
             <div className={"min-w-[765px] w-full h-[100px] bg-green-600 flex justify-center"}>
-                <div className={"w-11/12 h-[750px] mt-5 bg-slate-100  flex"}>
+                <div className={"w-11/12 h-[700px] mt-5 bg-slate-100  flex overflow-hidden"}>
                     <div className={"min-w-[350px] sm:w-1/2 md:w-2/5 lg:w-1/3 h-full bg-white shadow-xl  relative"}>
                         <div className={"w-full h-12 px-2 flex justify-between items-center bg-slate-100"}>
                             <div className={"w-10 h-10 flex justify-center items-center rounded-full"}>
@@ -62,7 +62,7 @@ const landingPage = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className={"w-full h-[55px] absolute bottom-0 border-t border-gray-300 bg-white flex justify-center items-center shadow-2xl"}>
+                        <div className={"w-full h-[50px] absolute bottom-0 border-t border-gray-300 bg-white flex justify-center items-center shadow-2xl"}>
                             <div className={"w-11/12 h-[90%] flex gap-x-5 items-center"}>
                                 <Image src={"/whats_app.png"} alt={"Whatsapp"} height={35} width={35}/>
                                 <p className={"text-green-700 text-md md:text-sm "}>Get WhatsApp for Windows <span
