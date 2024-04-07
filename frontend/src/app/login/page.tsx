@@ -4,23 +4,41 @@ import Nav from "@/components/nav";
 import ColumnBox from "@/components/ColumnBox";
 import Button from "@/components/Button";
 import OtpModel from "@/components/OtpModel";
-import {useState} from "react";
+import React, {useState} from "react";
 
-const login = ()=>{
+const Login:React.FC = ()=>{
+    const [data,setData] = useState<NumberState>({
+        number: '',
+        zip: ''
+    });
+    const [isOtpOpen, setOtpOpen] = useState<boolean>(false);
+
+    const handleData = (value: string, name: string) => {
+        setData(prevState => ({
+            ...prevState,
+            [name]: value
+        }));
+    };
+
+    const sendOtp = ()=>{
+        console.log(data)
+        setOtpOpen(prevState => !prevState)
+
+    }
 
 
     return (
         <>
             <div className={"w-full h-auto"}>
-                <OtpModel/>
+                {isOtpOpen && <OtpModel onClick={()=> setOtpOpen(false)}/>}
                 <Nav/>
                 <div className={"w-3/5 h-auto bg-white shadow-2xl mx-auto relative -mt-10"}>
                     <div className={"w-full h-[30rem] flex justify-center items-center"}>
                         <div className={"w-1/2 h-4/5 text-center"}>
                             <p className="text-2xl font-extralight py-3">Enter phone number</p>
                             <p className="text-sm text-gray-500">Select a country and enter your WhatsApp phone number</p>
-                            <ColumnBox/>
-                            <Button text={"Next"}/>
+                            <ColumnBox data={data} setData={handleData}/>
+                            <Button text={"Next"} onClick={sendOtp}/>
                             <p className={"text-green-700 tracking-wide"}>Link with QR code</p>
                         </div>
                     </div>
@@ -39,4 +57,4 @@ const login = ()=>{
         </>
     )
 }
-export default login;
+export default Login;
