@@ -1,6 +1,7 @@
 package com.dsi.demo.service;
 
 import com.dsi.demo.model.Person;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -9,5 +10,7 @@ import java.util.List;
 public interface userService {
     public List<Person> getAllUser();
 
-    public Person addAUser(Person person);
+    public ResponseEntity<?> addAUser(Person person);
+
+    public ResponseEntity<?> sendSms(Person person);
 }

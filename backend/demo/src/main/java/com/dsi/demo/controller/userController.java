@@ -15,12 +15,16 @@ public class userController {
     private userService userService;
     @GetMapping
     public ResponseEntity<?> getUser(){
-
         return new ResponseEntity<>(userService.getAllUser(), HttpStatus.OK);
     }
 
     @PostMapping("/save")
     public ResponseEntity<?> addAUser(@RequestBody Person person){
-        return new ResponseEntity<>(userService.addAUser(person),HttpStatus.CREATED);
+        return userService.addAUser(person);
+    }
+
+    @PostMapping("/send/sms")
+    public ResponseEntity<?> sendSms(@RequestBody Person person){
+        return userService.sendSms(person);
     }
 }
