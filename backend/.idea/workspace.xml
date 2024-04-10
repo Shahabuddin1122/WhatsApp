@@ -5,16 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e09642a1-a25f-4c86-ac73-13accfaf536c" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/3d6db661-fb94-415a-a604-d1425810dba0.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/3d6db661-fb94-415a-a604-d1425810dba0.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/demo/.gitignore" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/demo/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/dsi/demo/DemoApplication.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/dsi/demo/DemoApplication.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/dsi/demo/controller/userController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/dsi/demo/controller/userController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/dsi/demo/repository/UserRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/dsi/demo/repository/UserRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/dsi/demo/service/impl/userServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/dsi/demo/service/impl/userServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/dsi/demo/service/userService.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/dsi/demo/service/userService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,7 +123,7 @@
       <workItem from="1712496748426" duration="1348000" />
       <workItem from="1712673017056" duration="2697000" />
       <workItem from="1712728474041" duration="2431000" />
-      <workItem from="1712752621495" duration="589000" />
+      <workItem from="1712752621495" duration="3314000" />
     </task>
     <servers />
   </component>

@@ -5,6 +5,8 @@ import ColumnBox from "@/components/ColumnBox";
 import Button from "@/components/Button";
 import OtpModel from "@/components/OtpModel";
 import React, {useState} from "react";
+import {axiosFetcher} from "@/utils/axiosFetcher";
+import useSWR from "swr";
 
 const Login:React.FC = ()=>{
     const [data,setData] = useState<NumberState>({
@@ -25,6 +27,7 @@ const Login:React.FC = ()=>{
         setOtpOpen(prevState => !prevState)
 
     }
+
 
 
     return (
