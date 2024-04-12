@@ -16,5 +16,13 @@ interface InputProps {
 
 interface ButtonInterface {
     text:string,
+    disable?:boolean,
     onClick?: () => void
+}
+
+interface OtpInterface {
+    data:string,
+    matchOtp:()=>void,
+    handleOtp:(value:string)=> void,
+    onClick:()=> void
 }

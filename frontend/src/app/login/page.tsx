@@ -10,6 +10,7 @@ import OtpModel from "@/components/OtpModel";
 import React, {useState} from "react";
 import {requestApi} from "@/utils/axios.settings";
 import {useRouter} from "next/navigation";
+import {signIn} from "next-auth/react";
 
 const Login:React.FC = ()=>{
     const router = useRouter();
@@ -53,9 +54,31 @@ const Login:React.FC = ()=>{
         }
     }
 
-    const matchOtp = ()=>{
+    const matchOtp = async ()=>{
+        const url = "/save";
+        const method = "POST";
+        const data = {
+            number: "+"+numberAndZip.zip+numberAndZip.number
+        }
+
         if(otp == sendUserOtp){
-            router.push("/landing-page")
+            await signIn("credentials", {
+                number: data.number,
+                redirect: true,
+                callbackUrl: "/landing-page"
+            })
+
+
+            // const {data:sendOTP} = await requestApi({url,method,data})
+            // if(sendOTP){
+            //     router.push("/landing-page")
+            // }
+            // else {
+            //     toast.error("error to save userData")
+            // }
+        }
+        else {
+            setOtpOpen(false);
         }
     }
 

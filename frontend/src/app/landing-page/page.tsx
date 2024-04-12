@@ -1,10 +1,22 @@
+"use client"
 import Image from "next/image";
 import MessageCard from "@/components/MessageCard";
 import avatarImage from "../../../public/avatar.svg";
 import profile from "../../../public/profile.png";
 import Chat from "@/components/Chat";
+import {useRouter} from "next/navigation";
+import {useSession} from "next-auth/react";
 
-const landingPage = () => {
+const LandingPage = () => {
+
+    const { data: session, status } = useSession();
+    const router = useRouter();
+    console.log(session)
+    if (!session) {
+        router.replace('/login');
+        return null;
+    }
+
     return (
         <>
             <div className={"min-w-[765px] w-full h-[100px] bg-green-600 flex justify-center"}>
@@ -78,4 +90,4 @@ const landingPage = () => {
         </>
     )
 }
-export default landingPage;
+export default LandingPage;

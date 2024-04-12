@@ -27,11 +27,21 @@ public class userServiceImpl implements userService {
 
     @Override
     public ResponseEntity<?> addAUser(Person person) {
-        Person person1 = userRepository.findByNumber(person.getNumber());
+        String ReceiverNumber;
+        if (!person.getNumber().startsWith("+88")) {
+            ReceiverNumber = "+88"+person.getNumber();
+        } else if (person.getNumber().startsWith("+8800")) {
+            ReceiverNumber = person.getNumber().substring(0,3)+person.getNumber().substring(4);
+        } else {
+            ReceiverNumber = person.getNumber();
+        }
+        Person person1 = userRepository.findByNumber(ReceiverNumber);
         if(person1 != null){
             return new ResponseEntity<>(person1,HttpStatus.OK);
         }
-        return new ResponseEntity<>(userRepository.save(person), HttpStatus.CREATED);
+        Person person2 = new Person();
+        person2.setNumber(ReceiverNumber);
+        return new ResponseEntity<>(userRepository.save(person2), HttpStatus.CREATED);
     }
 
     @Override

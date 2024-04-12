@@ -1,10 +1,9 @@
-"use client"
-import React, { useState } from 'react';
+import React from 'react';
 import Button from "@/components/Button";
 import OTPInput from "react-otp-input";
 
-const OtpModel = ({matchOtp,data,handleOtp,onClick}:{matchOtp:()=>void,data:string,handleOtp:(value:string)=> void,onClick:()=> void})=>{
-    const [otp, setOtp] = useState('');
+const OtpModel:React.FC<OtpInterface> = ({matchOtp,data,handleOtp,onClick})=>{
+
     return (
         <>
             <div className={"w-full h-[720px] fixed z-11 bg-gray-400 opacity-40"}></div>
