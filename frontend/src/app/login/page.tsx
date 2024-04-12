@@ -1,19 +1,26 @@
 "use client"
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import Nav from "@/components/nav";
 import ColumnBox from "@/components/ColumnBox";
 import Button from "@/components/Button";
 import OtpModel from "@/components/OtpModel";
 import React, {useState} from "react";
-import {axiosFetcher} from "@/utils/axiosFetcher";
-import useSWR from "swr";
+import {requestApi} from "@/utils/axios.settings";
+import {useRouter} from "next/navigation";
 
 const Login:React.FC = ()=>{
-    const [data,setData] = useState<NumberState>({
+    const router = useRouter();
+    const [numberAndZip,setData] = useState<NumberState>({
         number: '',
         zip: ''
     });
     const [isOtpOpen, setOtpOpen] = useState<boolean>(false);
+    const [otp,setOtp]= useState<string>('')
+    const [sendUserOtp,setSendUserOtp]= useState<string>('')
+
 
     const handleData = (value: string, name: string) => {
         setData(prevState => ({
@@ -22,25 +29,49 @@ const Login:React.FC = ()=>{
         }));
     };
 
-    const sendOtp = ()=>{
-        console.log(data)
-        setOtpOpen(prevState => !prevState)
-
+    const handleOtp = (value:string) =>{
+        setOtp(value);
     }
 
+
+
+    const sendOtp = async ()=>{
+        const url="/send/sms";
+        const method="POST";
+        const data = {
+            number: "+"+numberAndZip.zip+numberAndZip.number
+        }
+        const {data:sendOTP} = await requestApi({url,method,data})
+
+        if(sendOTP){
+            setOtpOpen(prevState => !prevState)
+            toast.success("OTP send successfully")
+            setSendUserOtp(sendOTP);
+        }
+        else {
+            toast.error("Give a valid phone number")
+        }
+    }
+
+    const matchOtp = ()=>{
+        if(otp == sendUserOtp){
+            router.push("/landing-page")
+        }
+    }
 
 
     return (
         <>
             <div className={"w-full h-auto"}>
-                {isOtpOpen && <OtpModel onClick={()=> setOtpOpen(false)}/>}
+                <ToastContainer />
+                {isOtpOpen && <OtpModel matchOtp={matchOtp} data={otp} handleOtp={handleOtp} onClick={()=> setOtpOpen(false)}/>}
                 <Nav/>
                 <div className={"w-3/5 h-auto bg-white shadow-2xl mx-auto relative -mt-10"}>
                     <div className={"w-full h-[30rem] flex justify-center items-center"}>
                         <div className={"w-1/2 h-4/5 text-center"}>
                             <p className="text-2xl font-extralight py-3">Enter phone number</p>
                             <p className="text-sm text-gray-500">Select a country and enter your WhatsApp phone number</p>
-                            <ColumnBox data={data} setData={handleData}/>
+                            <ColumnBox data={numberAndZip} setData={handleData}/>
                             <Button text={"Next"} onClick={sendOtp}/>
                             <p className={"text-green-700 tracking-wide"}>Link with QR code</p>
                         </div>

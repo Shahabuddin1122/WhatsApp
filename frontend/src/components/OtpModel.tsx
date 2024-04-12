@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import Button from "@/components/Button";
 import OTPInput from "react-otp-input";
 
-const OtpModel = ({onClick}:{onClick:()=> void})=>{
+const OtpModel = ({matchOtp,data,handleOtp,onClick}:{matchOtp:()=>void,data:string,handleOtp:(value:string)=> void,onClick:()=> void})=>{
     const [otp, setOtp] = useState('');
     return (
         <>
@@ -17,15 +17,15 @@ const OtpModel = ({onClick}:{onClick:()=> void})=>{
                         <OTPInput
                             inputStyle={"border border-black text-3xl md:text-2xl"}
                             containerStyle={"min-w-[100px]"}
-                            value={otp}
-                            onChange={setOtp}
+                            value={data}
+                            onChange={(e)=> {handleOtp(e)}}
                             numInputs={6}
                             renderSeparator={<span className={" sm:w-2 md:w-3 w-6"}></span>}
                             renderInput={(props) => <input {...props} />}
                         ></OTPInput>
                     </div>
                     <div className={"flex justify-center -mt-3"}>
-                        <Button text={"Send"}/>
+                        <Button text={"Send"} onClick={matchOtp} />
                     </div>
 
                 </div>

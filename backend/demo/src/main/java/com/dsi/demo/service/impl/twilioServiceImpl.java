@@ -39,7 +39,7 @@ public class twilioServiceImpl implements TwiloService {
             Message message = Message
                     .creator(to,from,otpMessage)
                     .create();
-            return new ResponseEntity<>(message.getBody().split("-")[2], HttpStatus.GONE);
+            return new ResponseEntity<>(message.getBody().split("-")[2], HttpStatus.OK);
         }
         catch (Exception e){
             System.out.println(e.getMessage());

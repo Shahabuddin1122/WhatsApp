@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="e09642a1-a25f-4c86-ac73-13accfaf536c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/dsi/demo/service/impl/twilioServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/dsi/demo/service/impl/twilioServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/login/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/login/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/ColumnBox.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/ColumnBox.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -124,6 +127,8 @@
       <workItem from="1712673017056" duration="2697000" />
       <workItem from="1712728474041" duration="2431000" />
       <workItem from="1712752621495" duration="3314000" />
+      <workItem from="1712900271452" duration="874000" />
+      <workItem from="1712947014561" duration="690000" />
     </task>
     <servers />
   </component>
