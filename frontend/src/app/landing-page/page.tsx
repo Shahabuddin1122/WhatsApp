@@ -22,6 +22,8 @@ const LandingPage = () => {
         router.push("/login")
     }
     const {data, isLoading, error} = useSWR(`http://localhost:8080/api/v1/user/${user}`, fetcher)
+    const {data:Conversation, isLoading:LoadConversation, error:errorConversation} = useSWR(data? `http://localhost:8080/api/v1/message/conversation/${data.id}`: null, fetcher)
+
 
     return (
         <>
@@ -57,30 +59,16 @@ const LandingPage = () => {
                         <div className={"w-full h-[600px] relative overflow-y-scroll"}>
                             <div className={"w-full h-auto"}>
                                 <div className="flex flex-col justify-center">
-                                    <MessageCard text={"Hi"} number={"+8801982711168"} time={"8:20 PM"}
-                                                 image={avatarImage}/>
-                                    <MessageCard text={"Hello everyone. I am Shahabuddin"} number={"Shahabuddin akhon"}
-                                                 time={"8:20 PM"} image={profile}/>
-                                    <MessageCard text={"How to Create table and run Liquibase"} number={"Rafsan"}
-                                                 time={"8:20 PM"} image={avatarImage}/>
-                                    <MessageCard text={"Hello"} number={"Abdullah"} time={"12:00 PM"}
-                                                 image={avatarImage}/>
-                                    <MessageCard text={"Hello"} number={"Nafees Kaiser"} time={"8:20 PM"}
-                                                 image={profile}/>
-                                    <MessageCard text={"Hello"} number={"Nafis Ahmed"} time={"11:40 PM"}
-                                                 image={avatarImage}/>
-                                    <MessageCard text={"Hello"} number={"Ashik"} time={"8:25 AM"}
-                                                 image={avatarImage}/>
-                                    <MessageCard text={"Hello"} number={"+8801715515736"} time={"2:20 AM"}
-                                                 image={avatarImage}/>
-                                    <MessageCard text={"Hello"} number={"Raiyan"} time={"1:27 AM"}
-                                                 image={profile}/>
-                                    <MessageCard text={"Hello"} number={"Rafi"} time={"8:50 PM"}
-                                                 image={avatarImage}/>
-                                    <MessageCard text={"Hello"} number={"Shahida"} time={"3:20 AM"}
-                                                 image={profile}/>
-                                    <MessageCard text={"Hi"} number={"Peyara"} time={"4:50 AM"}
-                                                 image={avatarImage}/>
+                                    {!LoadConversation && !errorConversation && Conversation && Conversation.map((data:any, key:number) =>
+                                        <div key={key}>
+                                                {data.receiverNumber.map((receiver:any, index:number) => {
+                                                    if(receiver.number == user){ return null}
+                                                    return <MessageCard key={index} number={receiver.name ? receiver.name : receiver.number} text={"hello"} image={receiver.imgLink} time={"5:21pm"} />
+                                                }
+                                            )}
+                                        </div>
+                                    )}
+
 
                                 </div>
                             </div>

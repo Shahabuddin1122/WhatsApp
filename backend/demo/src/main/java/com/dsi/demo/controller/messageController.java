@@ -19,8 +19,9 @@ public class messageController {
         return messageService.saveMessage(messageDto);
     }
 
-    @PostMapping("/conversation/{id}")
+    @GetMapping("/conversation/{id}")
     public ResponseEntity<?> getAllUser(@PathVariable long id){
+
         return messageService.getAllUser(id);
     }
 
