@@ -13,4 +13,6 @@ public interface userService {
     public ResponseEntity<?> addAUser(Person person);
 
     public ResponseEntity<?> sendSms(Person person);
+
+    public ResponseEntity<?> getUserByNumber(String number);
 }

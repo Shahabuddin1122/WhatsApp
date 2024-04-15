@@ -17,6 +17,10 @@ public class userController {
     public ResponseEntity<?> getUser(){
         return new ResponseEntity<>(userService.getAllUser(), HttpStatus.OK);
     }
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getAUser(@PathVariable String id){
+        return userService.getUserByNumber(id);
+    }
 
     @PostMapping("/save")
     public ResponseEntity<?> addAUser(@RequestBody Person person){

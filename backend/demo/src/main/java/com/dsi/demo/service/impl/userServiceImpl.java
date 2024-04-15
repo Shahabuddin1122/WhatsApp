@@ -49,4 +49,10 @@ public class userServiceImpl implements userService {
         return twiloService.sendSMS(person.getNumber());
     }
 
+    @Override
+    public ResponseEntity<?> getUserByNumber(String number) {
+        Person person = userRepository.findByNumber(number);
+        return new ResponseEntity<>(person,HttpStatus.OK);
+    }
+
 }

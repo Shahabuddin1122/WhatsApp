@@ -11,6 +11,7 @@ import React, {useState} from "react";
 import {requestApi} from "@/utils/axios.settings";
 import {useRouter} from "next/navigation";
 import {signIn} from "next-auth/react";
+import {decryptData, encryptData, ENCRYPTION_KEY} from "@/utils/encryption";
 
 const Login:React.FC = ()=>{
     const router = useRouter();
@@ -62,20 +63,24 @@ const Login:React.FC = ()=>{
         }
 
         if(otp == sendUserOtp){
-            await signIn("credentials", {
-                number: data.number,
-                redirect: true,
-                callbackUrl: "/landing-page"
-            })
+            // await signIn("credentials", {
+            //     number: data.number,
+            //     redirect: true,
+            //     callbackUrl: "/landing-page"
+            // })
 
 
-            // const {data:sendOTP} = await requestApi({url,method,data})
-            // if(sendOTP){
-            //     router.push("/landing-page")
-            // }
-            // else {
-            //     toast.error("error to save userData")
-            // }
+            const {data:sendOTP} = await requestApi({url,method,data})
+            if(sendOTP){
+                let date = Date.now().toString()
+                console.log(sendOTP)
+                const e = encryptData({data:sendOTP.number,key:date});
+                console.log("e: "+e);
+                router.push(`/landing-page?id=${e}${ENCRYPTION_KEY}${date}`)
+            }
+            else {
+                toast.error("error to save userData")
+            }
         }
         else {
             setOtpOpen(false);

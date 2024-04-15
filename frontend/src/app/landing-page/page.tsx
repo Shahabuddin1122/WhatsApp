@@ -4,18 +4,24 @@ import MessageCard from "@/components/MessageCard";
 import avatarImage from "../../../public/avatar.svg";
 import profile from "../../../public/profile.png";
 import Chat from "@/components/Chat";
-import {useRouter} from "next/navigation";
-import {useSession} from "next-auth/react";
+import {useRouter, useSearchParams} from "next/navigation";
+import {decryptData, ENCRYPTION_KEY} from "@/utils/encryption";
+import {fetcher} from "@/utils/fetcher";
+import useSWR from "swr";
+import Default from "@/components/Default";
 
 const LandingPage = () => {
-
-    const { data: session, status } = useSession();
     const router = useRouter();
-    console.log(session)
-    if (!session) {
-        router.replace('/login');
-        return null;
+    const idParams = useSearchParams();
+    const id = idParams.get('id');
+    const user = decryptData({
+        encryptedData: id?.split(ENCRYPTION_KEY)[0] || '',
+        key: id?.split(ENCRYPTION_KEY)[1] || ''
+    })
+    if (!user) {
+        router.push("/login")
     }
+    const {data, isLoading, error} = useSWR(`http://localhost:8080/api/v1/user/${user}`, fetcher)
 
     return (
         <>
@@ -24,8 +30,13 @@ const LandingPage = () => {
                     <div className={"min-w-[350px] sm:w-1/2 md:w-2/5 lg:w-1/3 h-full bg-white shadow-xl  relative"}>
                         <div className={"w-full h-12 px-2 flex justify-between items-center bg-slate-100"}>
                             <div className={"w-10 h-10 flex justify-center items-center rounded-full"}>
-                                <Image src={"/profile.png"} alt={"next"} width={50} height={50}
-                                       className={"rounded-full"}/>
+                                {!error && !isLoading && data.imgLink ? <Image
+                                    src={data.imgLink}
+                                    alt={"next"} width={50} height={50}
+                                    className={"rounded-full"}/> : <Image
+                                    src={avatarImage}
+                                    alt={"next"} width={50} height={50}
+                                    className={"rounded-full"}/>}
                             </div>
                             <div className={" flex justify-center items-center gap-x-4 md:gap-x-8 lg:gap-x-10"}>
                                 <Image src={"/group.svg"} alt={"next"} width={20} height={20}/>
@@ -74,7 +85,8 @@ const LandingPage = () => {
                                 </div>
                             </div>
                         </div>
-                        <div className={"w-full h-[50px] absolute bottom-0 border-t border-gray-300 bg-white flex justify-center items-center shadow-2xl"}>
+                        <div
+                            className={"w-full h-[50px] absolute bottom-0 border-t border-gray-300 bg-white flex justify-center items-center shadow-2xl"}>
                             <div className={"w-11/12 h-[90%] flex gap-x-5 items-center"}>
                                 <Image src={"/whats_app.png"} alt={"Whatsapp"} height={35} width={35}/>
                                 <p className={"text-green-700 text-md md:text-sm "}>Get WhatsApp for Windows <span
@@ -83,7 +95,8 @@ const LandingPage = () => {
                         </div>
                     </div>
                     <div className={"min-w-[350px] lg:w-2/3 h-full "}>
-                        <Chat/>
+                        {/*<Chat/>*/}
+                        <Default/>
                     </div>
                 </div>
             </div>

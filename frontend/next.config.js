@@ -1,6 +1,6 @@
 // next.config.js
 module.exports = {
     images: {
-        domains: ['flagcdn.com'],
+        domains: ['flagcdn.com','res.cloudinary.com'],
     },
 }
