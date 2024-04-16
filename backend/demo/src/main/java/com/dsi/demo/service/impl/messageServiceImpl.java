@@ -1,6 +1,7 @@
 package com.dsi.demo.service.impl;
 
 import com.dsi.demo.dto.ConversationDto;
+import com.dsi.demo.dto.ConversationMessageDto;
 import com.dsi.demo.dto.MessageDto;
 import com.dsi.demo.model.Conversation;
 import com.dsi.demo.model.Message;
@@ -15,10 +16,9 @@ import org.springframework.http.HttpStatusCode;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.*;
 import java.util.stream.Collectors;
 
 @Service
@@ -46,7 +46,7 @@ public class messageServiceImpl implements MessageService {
         message.setMessage(messageDto.getMessage());
         message.setSenderNumber(user1);
         message.setConversation(conversation);
-
+        message.setDate(new Date());
         // Save the message
         messageRepository.save(message);
 
@@ -58,8 +58,16 @@ public class messageServiceImpl implements MessageService {
 
     @Override
     public ResponseEntity<?> getAllUser(Long id) {
+        List<ConversationMessageDto> conversationMessageDtoList = new ArrayList<>();
         List<Conversation> conversationList = conversationRepository.findByReceiverNumberContainsUser(id);
-        return new ResponseEntity<>(conversationList,HttpStatus.OK);
+        for (Conversation conversation: conversationList){
+            List<Message> message = messageRepository.findConversationWithMessage(conversation.getId());
+            ConversationMessageDto conversationMessageDto = new ConversationMessageDto();
+            conversationMessageDto.setMessage(message.get(0));
+            conversationMessageDto.setConversation(conversation);
+            conversationMessageDtoList.add(conversationMessageDto);
+        }
+        return new ResponseEntity<>(conversationMessageDtoList,HttpStatus.OK);
     }
 
     @Override

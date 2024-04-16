@@ -19,9 +19,8 @@ public class messageController {
         return messageService.saveMessage(messageDto);
     }
 
-    @GetMapping("/conversation/{id}")
+    @GetMapping("/conversation/{id}")  //id=user_id
     public ResponseEntity<?> getAllUser(@PathVariable long id){
-
         return messageService.getAllUser(id);
     }
 
@@ -30,7 +29,7 @@ public class messageController {
         return messageService.createNewConversation(conversationDto);
     }
 
-    @PostMapping("/getAll/{id}")
+    @PostMapping("/getAll/{id}") //id=conversation_id
     public ResponseEntity<?> getAllMessage(@PathVariable Long id){
         return messageService.getAllMessage(id);
     }

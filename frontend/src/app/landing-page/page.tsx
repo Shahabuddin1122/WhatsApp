@@ -24,7 +24,7 @@ const LandingPage = () => {
     const {data, isLoading, error} = useSWR(`http://localhost:8080/api/v1/user/${user}`, fetcher)
     const {data:Conversation, isLoading:LoadConversation, error:errorConversation} = useSWR(data? `http://localhost:8080/api/v1/message/conversation/${data.id}`: null, fetcher)
 
-
+    console.log(Conversation)
     return (
         <>
             <div className={"min-w-[765px] w-full h-[100px] bg-green-600 flex justify-center"}>
@@ -61,14 +61,13 @@ const LandingPage = () => {
                                 <div className="flex flex-col justify-center">
                                     {!LoadConversation && !errorConversation && Conversation && Conversation.map((data:any, key:number) =>
                                         <div key={key}>
-                                                {data.receiverNumber.map((receiver:any, index:number) => {
+                                                {data.conversation.receiverNumber.map((receiver:any, index:number) => {
                                                     if(receiver.number == user){ return null}
-                                                    return <MessageCard key={index} number={receiver.name ? receiver.name : receiver.number} text={"hello"} image={receiver.imgLink} time={"5:21pm"} />
+                                                    return <MessageCard key={index} number={receiver.name ? receiver.name : receiver.number} text={data.message.message} image={receiver.imgLink} time={data.message.date?data.message.date : "Long ago"} />
                                                 }
                                             )}
                                         </div>
                                     )}
-
 
                                 </div>
                             </div>
