@@ -2,15 +2,17 @@
 import Image from "next/image";
 import MessageCard from "@/components/MessageCard";
 import avatarImage from "../../../public/avatar.svg";
-import profile from "../../../public/profile.png";
 import Chat from "@/components/Chat";
 import {useRouter, useSearchParams} from "next/navigation";
 import {decryptData, ENCRYPTION_KEY} from "@/utils/encryption";
 import {fetcher} from "@/utils/fetcher";
 import useSWR from "swr";
 import Default from "@/components/Default";
+import {useState} from "react";
+import {convertDate} from "@/utils/convertDate";
 
 const LandingPage = () => {
+    const [ClickedUser,setClickedUser] = useState();
     const router = useRouter();
     const idParams = useSearchParams();
     const id = idParams.get('id');
@@ -23,7 +25,6 @@ const LandingPage = () => {
     }
     const {data, isLoading, error} = useSWR(`http://localhost:8080/api/v1/user/${user}`, fetcher)
     const {data:Conversation, isLoading:LoadConversation, error:errorConversation} = useSWR(data? `http://localhost:8080/api/v1/message/conversation/${data.id}`: null, fetcher)
-
     console.log(Conversation)
     return (
         <>
@@ -63,12 +64,11 @@ const LandingPage = () => {
                                         <div key={key}>
                                                 {data.conversation.receiverNumber.map((receiver:any, index:number) => {
                                                     if(receiver.number == user){ return null}
-                                                    return <MessageCard key={index} number={receiver.name ? receiver.name : receiver.number} text={data.message.message} image={receiver.imgLink} time={data.message.date?data.message.date : "Long ago"} />
+                                                    return <MessageCard key={index} handleMessage={()=> setClickedUser(receiver.id)} number={receiver.name ? receiver.name : receiver.number} text={data.message.message} image={receiver.imgLink} time={data.message.date? convertDate({date:data.message.date}) : "Long ago"} />
                                                 }
                                             )}
                                         </div>
                                     )}
-
                                 </div>
                             </div>
                         </div>
@@ -82,8 +82,7 @@ const LandingPage = () => {
                         </div>
                     </div>
                     <div className={"min-w-[350px] lg:w-2/3 h-full "}>
-                        {/*<Chat/>*/}
-                        <Default/>
+                        {ClickedUser? <Chat user={user} id={ClickedUser}/> : <Default/>}
                     </div>
                 </div>
             </div>

@@ -29,7 +29,7 @@ public class messageController {
         return messageService.createNewConversation(conversationDto);
     }
 
-    @PostMapping("/getAll/{id}") //id=conversation_id
+    @GetMapping("/getAll/{id}") //id=conversation_id
     public ResponseEntity<?> getAllMessage(@PathVariable Long id){
         return messageService.getAllMessage(id);
     }

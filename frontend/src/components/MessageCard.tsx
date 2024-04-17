@@ -1,11 +1,11 @@
 import Image from "next/image";
 
-const MessageCard = ({number,text,image,time}:{number:String,text:String,image: any,time:String})=>{
+const MessageCard = ({number,text,image,time,handleMessage}:{number:String,text:String,image: any,time:String,handleMessage:()=>void})=>{
 
 
     return (
         <>
-            <div className={"w-full h-16 border-b border-slate-300 flex justify-center items-center mb-1 hover:bg-slate-100 cursor-pointer"}>
+            <div onClick={handleMessage} className={"w-full h-16 border-b border-slate-300 flex justify-center items-center mb-1 hover:bg-slate-100 cursor-pointer"}>
                 <div className={"w-11/12 h-[70%] flex relative"}>
                     <div>
                         <Image src={image? image : "/profile.png"} alt={"Image"} width={40} height={40} className={"rounded-full"}/>

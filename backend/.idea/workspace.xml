@@ -7,8 +7,9 @@
     <list default="true" id="e09642a1-a25f-4c86-ac73-13accfaf536c" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/dsi/demo/controller/messageController.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/dsi/demo/controller/messageController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/dsi/demo/repository/MessageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/dsi/demo/repository/MessageRepository.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/dsi/demo/service/impl/messageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/dsi/demo/service/impl/messageServiceImpl.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/app/landing-page/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/landing-page/page.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/Chat.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Chat.tsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../frontend/src/components/MessageCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/MessageCard.tsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -132,11 +133,28 @@
       <workItem from="1713179770680" duration="966000" />
       <workItem from="1713188224876" duration="102000" />
       <workItem from="1713190570263" duration="6619000" />
-      <workItem from="1713252644932" duration="5207000" />
+      <workItem from="1713252644932" duration="7589000" />
+      <workItem from="1713325555619" duration="1327000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/demo/src/main/java/com/dsi/demo/service/impl/messageServiceImpl.java</url>
+          <line>64</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/demo/src/main/java/com/dsi/demo/service/impl/messageServiceImpl.java</url>
+          <line>63</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
