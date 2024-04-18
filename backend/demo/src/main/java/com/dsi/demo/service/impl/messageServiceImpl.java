@@ -60,18 +60,19 @@ public class messageServiceImpl implements MessageService {
     public ResponseEntity<?> getAllUser(Long id) {
         List<ConversationMessageDto> conversationMessageDtoList = new ArrayList<>();
         List<Conversation> conversationList = conversationRepository.findByReceiverNumberContainsUser(id);
-        for (Conversation conversation: conversationList){
-            List<Message> message = messageRepository.findConversationWithMessage(conversation.getId());
+        for (Conversation conversation : conversationList) {
+            List<Message> message = messageRepository.findConversationWithMessageDec(conversation.getId());
             ConversationMessageDto conversationMessageDto = new ConversationMessageDto();
-            conversationMessageDto.setMessage(message.get(0));
+            conversationMessageDto.setMessage(message.get(message.size() - 1));
             conversationMessageDto.setConversation(conversation);
             conversationMessageDtoList.add(conversationMessageDto);
-//            System.out.println("Date: "+message.get(0).getDate());
         }
         conversationMessageDtoList.sort(Comparator.comparing(
-                c -> c.getMessage().getDate()));
-        return new ResponseEntity<>(conversationMessageDtoList,HttpStatus.OK);
+                c -> c.getMessage().getDate(), Comparator.reverseOrder())); // Sort in descending order
+
+        return new ResponseEntity<>(conversationMessageDtoList, HttpStatus.OK);
     }
+
 
     @Override
     public ResponseEntity<?> createNewConversation(ConversationDto conversationDto) {
@@ -85,7 +86,7 @@ public class messageServiceImpl implements MessageService {
 
     @Override
     public ResponseEntity<?> getAllMessage(Long id) {
-        return new ResponseEntity<>(messageRepository.findConversationWithMessage(id),HttpStatus.OK);
+        return new ResponseEntity<>(messageRepository.findConversationWithMessageDec(id),HttpStatus.OK);
     }
 
 

@@ -15,9 +15,9 @@ const LandingPage = () => {
     const [ClickedUser,setClickedUser] = useState();
     const router = useRouter();
     const idParams = useSearchParams();
-    const id = idParams.get('id');
+    const id = decodeURIComponent(idParams.get('id') || '');
     const user = decryptData({
-        encryptedData: id?.split(ENCRYPTION_KEY)[0] || '',
+        encryptedData: id?.split(ENCRYPTION_KEY)[0] ,
         key: id?.split(ENCRYPTION_KEY)[1] || ''
     })
     if (!user) {

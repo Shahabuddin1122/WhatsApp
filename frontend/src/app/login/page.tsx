@@ -44,7 +44,7 @@ const Login:React.FC = ()=>{
             number: "+"+numberAndZip.zip+numberAndZip.number
         }
         const {data:sendOTP} = await requestApi({url,method,data})
-
+        console.log("Otp: "+sendOTP)
         if(sendOTP){
             setOtpOpen(prevState => !prevState)
             toast.success("OTP send successfully")
@@ -71,19 +71,22 @@ const Login:React.FC = ()=>{
 
 
             const {data:sendOTP} = await requestApi({url,method,data})
+
             if(sendOTP){
                 let date = Date.now().toString()
-                console.log(sendOTP)
                 const e = encryptData({data:sendOTP.number,key:date});
-                console.log("e: "+e);
-                router.push(`/landing-page?id=${e}${ENCRYPTION_KEY}${date}`)
+                const encodedId = encodeURIComponent(`${e}${ENCRYPTION_KEY}${date}`);
+
+                router.push(`/landing-page?id=${encodedId}`)
             }
             else {
                 toast.error("error to save userData")
             }
         }
         else {
-            setOtpOpen(false);
+            // setOtpOpen(false);
+            console.log(otp)
+            console.log(sendUserOtp)
         }
     }
 

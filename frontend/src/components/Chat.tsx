@@ -5,10 +5,12 @@ import MessageRight from "@/components/MessageRight";
 import useSWR from "swr";
 import {fetcher} from "@/utils/fetcher";
 import {convertDate} from "@/utils/convertDate";
+import TimeFrame from "@/components/TimeFrame";
 
 const Chat = ({user, id}: { user?: string, id: string }) => {
     let isLeftNumber:boolean = true;
     let isRightNumber:boolean = true;
+    let prevDay:string | null = null;
 
     const {data, isLoading, error} = useSWR(`http://localhost:8080/api/v1/message/getAll/${id}`, fetcher)
     return (
@@ -19,7 +21,7 @@ const Chat = ({user, id}: { user?: string, id: string }) => {
                         <Image src={(data && data[0].conversation.receiverNumber[0].number === user)? (data[0]?.conversation?.receiverNumber[1]?.imgLink != null) ? data[0]?.conversation?.receiverNumber[1]?.imgLink : "avatar.svg" : "avatar.svg"} alt={"profile"} width={30} height={30} className={"rounded-full"}/>
                         <div className={""}>
                             <p className={"text-xs"}>{(data && data[0].conversation.receiverNumber[0].number === user)? data[0]?.conversation?.receiverNumber[1]?.name : data && (data[0]?.conversation?.receiverNumber[0]?.name || "unKnown")}</p>
-                            <p className={"text-[10px] text-gray-500"}>last seen in {(data && data[0].conversation.receiverNumber[0].number === user)? convertDate({date:data[0]?.date}) : data && (data[0]?.date || "long ago")}</p>
+                            <p className={"text-[10px] text-gray-500"}>last seen in {(data && data[0].conversation.receiverNumber[0].number === user)? convertDate({date:data[data.length - 1]?.date,flag:true}) : data && (convertDate({date:data[1]?.date,flag:true}) || "long ago")}</p>
                         </div>
                     </div>
                     <div className={"h-full flex justify-center items-center gap-x-6"}>
@@ -36,20 +38,37 @@ const Chat = ({user, id}: { user?: string, id: string }) => {
             <div style={{backgroundImage: "url('/1288117.png')"}}
                  className={"h-[605px] w-full relative overflow-y-scroll"}>
                 {!isLoading && !error && data && data.map((message: any, index: number) => {
+                    let forDay = convertDate({ date: message.date, forDay: true });
+                    let x;
+                    if (prevDay != forDay) {
+                        x = <TimeFrame date={forDay} />;
+                    } else {
+                        x = "";
+
+                    }
+                    prevDay = forDay;
+
                     if (message.senderNumber.number === user) {
                         isLeftNumber=true;
                         const firstForRight = isRightNumber;
                         isRightNumber = false;
-                        return <MessageRight key={index} Message={message.message}
-                                             Time={message.date? convertDate({date:message.date}) : "Long ago"} first={firstForRight}/>
+                        return <>
+                            {x}
+                            <MessageRight key={index} Message={message.message} Time={message.date? convertDate({date:message.date}) : "Long ago"} first={firstForRight}/>
+                        </>
                     } else {
                         isRightNumber=true;
                         const firstForLeft = isLeftNumber;
                         isLeftNumber = false;
-                        return <MessageLeft key={index} Message={message.message}
-                                            Time={message.date? convertDate({date:message.date}) : "Long ago"} first={firstForLeft}/>
+                        return (
+                            <>
+                                {x}
+                                <MessageLeft key={index} Message={message.message} Time={message.date ? convertDate({date: message.date}) : "Long ago"} first={firstForLeft}/>
+                            </>
+                        )
                     }
                 })}
+
             </div>
             <div className={"h-[50px] w-full flex justify-center items-center "}>
                 <div className={"h-[40px] w-[94%] flex justify-center items-center gap-x-4"}>

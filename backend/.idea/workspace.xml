@@ -8,9 +8,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/dsi/demo/repository/MessageRepository.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/dsi/demo/repository/MessageRepository.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/demo/src/main/java/com/dsi/demo/service/impl/messageServiceImpl.java" beforeDir="false" afterPath="$PROJECT_DIR$/demo/src/main/java/com/dsi/demo/service/impl/messageServiceImpl.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/app/landing-page/page.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/app/landing-page/page.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/components/Chat.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/Chat.tsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../frontend/src/components/MessageCard.tsx" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/components/MessageCard.tsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../frontend/src/utils/convertDate.ts" beforeDir="false" afterPath="$PROJECT_DIR$/../frontend/src/utils/convertDate.ts" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -138,7 +136,8 @@
       <workItem from="1713252644932" duration="7589000" />
       <workItem from="1713325555619" duration="1835000" />
       <workItem from="1713338895945" duration="2944000" />
-      <workItem from="1713415670009" duration="1607000" />
+      <workItem from="1713415670009" duration="2338000" />
+      <workItem from="1713435342051" duration="4177000" />
     </task>
     <servers />
   </component>

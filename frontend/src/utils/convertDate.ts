@@ -1,4 +1,4 @@
-export function convertDate({ date,flag }: { date: Date,flag?:boolean }) {
+export function convertDate({ date,flag,forDay }: { date: Date,flag?:boolean,forDay?:boolean }) {
     const parsedDate = new Date(date);
     const today = new Date();
     const formattedHours = getTime({parsedDate});
@@ -8,6 +8,7 @@ export function convertDate({ date,flag }: { date: Date,flag?:boolean }) {
         today.getFullYear() === parsedDate.getFullYear()
     ) {
         if(flag) return `Today ${formattedHours}`;
+        if(forDay) return `Today`;
         return `${formattedHours}`;
     }
 
@@ -20,6 +21,7 @@ export function convertDate({ date,flag }: { date: Date,flag?:boolean }) {
         const dayOfWeek = days[parsedDate.getDay()];
 
         if(flag) return `${dayOfWeek} at ${formattedHours}`;
+        if(forDay) return `${dayOfWeek}`
         return `${formattedHours}`;
     }
 
@@ -30,8 +32,8 @@ export function convertDate({ date,flag }: { date: Date,flag?:boolean }) {
     const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
     const formattedDay = day < 10 ? `0${day}` : `${day}`;
-
-    return `${months[month]} ${formattedDay}, ${year}`;
+    if(flag || forDay) return `${months[month]} ${formattedDay}, ${year}`;
+    return `${formattedHours}`;
 }
 
 function getTime({parsedDate}:{parsedDate:Date}){
