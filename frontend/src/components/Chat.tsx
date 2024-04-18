@@ -4,6 +4,7 @@ import MessageLeft from "@/components/MessageLeft";
 import MessageRight from "@/components/MessageRight";
 import useSWR from "swr";
 import {fetcher} from "@/utils/fetcher";
+import {convertDate} from "@/utils/convertDate";
 
 const Chat = ({user, id}: { user?: string, id: string }) => {
     let isLeftNumber:boolean = true;
@@ -12,13 +13,13 @@ const Chat = ({user, id}: { user?: string, id: string }) => {
     const {data, isLoading, error} = useSWR(`http://localhost:8080/api/v1/message/getAll/${id}`, fetcher)
     return (
         <>
-            <div className={"h-[47px] min-w-[350px] w-full flex justify-center items-center"}>
+            <div className={"h-[47px] min-w-[350px] w-full flex justify-center items-center transition ease-in-out duration-500 delay-1000"}>
                 <div className={"h-[40px] w-[94%] flex justify-between"}>
                     <div className={"h-full flex items-center gap-x-2"}>
-                        <Image src={"/profile.png"} alt={"profile"} width={30} height={30} className={"rounded-full"}/>
+                        <Image src={(data && data[0].conversation.receiverNumber[0].number === user)? (data[0]?.conversation?.receiverNumber[1]?.imgLink != null) ? data[0]?.conversation?.receiverNumber[1]?.imgLink : "avatar.svg" : "avatar.svg"} alt={"profile"} width={30} height={30} className={"rounded-full"}/>
                         <div className={""}>
-                            <p className={"text-xs"}>Shahabuddin Akhon</p>
-                            <p className={"text-[10px] text-gray-500"}>Last seen yesterday at 8:20 PM</p>
+                            <p className={"text-xs"}>{(data && data[0].conversation.receiverNumber[0].number === user)? data[0]?.conversation?.receiverNumber[1]?.name : data && (data[0]?.conversation?.receiverNumber[0]?.name || "unKnown")}</p>
+                            <p className={"text-[10px] text-gray-500"}>last seen in {(data && data[0].conversation.receiverNumber[0].number === user)? convertDate({date:data[0]?.date}) : data && (data[0]?.date || "long ago")}</p>
                         </div>
                     </div>
                     <div className={"h-full flex justify-center items-center gap-x-6"}>
@@ -40,13 +41,13 @@ const Chat = ({user, id}: { user?: string, id: string }) => {
                         const firstForRight = isRightNumber;
                         isRightNumber = false;
                         return <MessageRight key={index} Message={message.message}
-                                             Time={message.date ? message.date : 'long ago'} first={firstForRight}/>
+                                             Time={message.date? convertDate({date:message.date}) : "Long ago"} first={firstForRight}/>
                     } else {
                         isRightNumber=true;
                         const firstForLeft = isLeftNumber;
                         isLeftNumber = false;
                         return <MessageLeft key={index} Message={message.message}
-                                            Time={message.date ? message.date : 'long ago'} first={firstForLeft}/>
+                                            Time={message.date? convertDate({date:message.date}) : "Long ago"} first={firstForLeft}/>
                     }
                 })}
             </div>

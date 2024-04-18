@@ -66,7 +66,10 @@ public class messageServiceImpl implements MessageService {
             conversationMessageDto.setMessage(message.get(0));
             conversationMessageDto.setConversation(conversation);
             conversationMessageDtoList.add(conversationMessageDto);
+//            System.out.println("Date: "+message.get(0).getDate());
         }
+        conversationMessageDtoList.sort(Comparator.comparing(
+                c -> c.getMessage().getDate()));
         return new ResponseEntity<>(conversationMessageDtoList,HttpStatus.OK);
     }
 
@@ -82,7 +85,7 @@ public class messageServiceImpl implements MessageService {
 
     @Override
     public ResponseEntity<?> getAllMessage(Long id) {
-        return new ResponseEntity<>(messageRepository.findByConversationId(id),HttpStatus.OK);
+        return new ResponseEntity<>(messageRepository.findConversationWithMessage(id),HttpStatus.OK);
     }
 
 

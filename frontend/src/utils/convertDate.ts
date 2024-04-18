@@ -1,4 +1,4 @@
-export function convertDate({ date }: { date: Date }) {
+export function convertDate({ date,flag }: { date: Date,flag?:boolean }) {
     const parsedDate = new Date(date);
     const today = new Date();
     const formattedHours = getTime({parsedDate});
@@ -7,7 +7,8 @@ export function convertDate({ date }: { date: Date }) {
         today.getMonth() === parsedDate.getMonth() &&
         today.getFullYear() === parsedDate.getFullYear()
     ) {
-        return `Today ${formattedHours}`;
+        if(flag) return `Today ${formattedHours}`;
+        return `${formattedHours}`;
     }
 
     const oneDay = 24 * 60 * 60 * 1000; // hours*minutes*seconds*milliseconds
@@ -18,18 +19,19 @@ export function convertDate({ date }: { date: Date }) {
         const days = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
         const dayOfWeek = days[parsedDate.getDay()];
 
-        return `${dayOfWeek} at ${formattedHours}`;
+        if(flag) return `${dayOfWeek} at ${formattedHours}`;
+        return `${formattedHours}`;
     }
 
     // Return the date in dd:mm:yy format
     const year = parsedDate.getFullYear();
     const month = parsedDate.getMonth() + 1;
     const day = parsedDate.getDate();
+    const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
 
-    const formattedMonth = month < 10 ? `0${month}` : `${month}`;
     const formattedDay = day < 10 ? `0${day}` : `${day}`;
 
-    return `${formattedDay}/${formattedMonth}/${year}`;
+    return `${months[month]} ${formattedDay}, ${year}`;
 }
 
 function getTime({parsedDate}:{parsedDate:Date}){
