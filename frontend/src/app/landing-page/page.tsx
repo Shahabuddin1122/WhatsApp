@@ -24,7 +24,7 @@ const LandingPage = () => {
         router.push("/login")
     }
     const {data, isLoading, error} = useSWR(`http://localhost:8080/api/v1/user/${user}`, fetcher)
-    const {data:Conversation, isLoading:LoadConversation, error:errorConversation} = useSWR(data? `http://localhost:8080/api/v1/message/conversation/${data.id}`: null, fetcher)
+    const {data:Conversation, isLoading:LoadConversation, error:errorConversation,mutate} = useSWR(data? `http://localhost:8080/api/v1/message/conversation/${data.id}`: null, fetcher, { refreshInterval: 1000 })
 
     return (
         <>

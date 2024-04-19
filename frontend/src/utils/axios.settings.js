@@ -2,7 +2,7 @@ import _axios from "axios";
 
 const axios = _axios.create({
     timeout:5000,
-    baseURL: "http://localhost:8080/api/v1/user"
+    baseURL: "http://localhost:8080/api/v1"
 })
 
 axios.interceptors.request.use(

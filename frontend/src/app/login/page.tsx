@@ -38,7 +38,7 @@ const Login:React.FC = ()=>{
 
 
     const sendOtp = async ()=>{
-        const url="/send/sms";
+        const url="/user/send/sms";
         const method="POST";
         const data = {
             number: "+"+numberAndZip.zip+numberAndZip.number
@@ -56,7 +56,7 @@ const Login:React.FC = ()=>{
     }
 
     const matchOtp = async ()=>{
-        const url = "/save";
+        const url = "/user/save";
         const method = "POST";
         const data = {
             number: "+"+numberAndZip.zip+numberAndZip.number
