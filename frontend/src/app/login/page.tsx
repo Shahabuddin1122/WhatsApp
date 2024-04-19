@@ -44,7 +44,7 @@ const Login:React.FC = ()=>{
             number: "+"+numberAndZip.zip+numberAndZip.number
         }
         const {data:sendOTP} = await requestApi({url,method,data})
-        console.log("Otp: "+sendOTP)
+        // console.log("Otp: "+sendOTP)
         if(sendOTP){
             setOtpOpen(prevState => !prevState)
             toast.success("OTP send successfully")
@@ -84,9 +84,9 @@ const Login:React.FC = ()=>{
             }
         }
         else {
-            // setOtpOpen(false);
-            console.log(otp)
-            console.log(sendUserOtp)
+            setOtpOpen(false);
+            // console.log(otp)
+            // console.log(sendUserOtp)
         }
     }
 

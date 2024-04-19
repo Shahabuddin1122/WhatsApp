@@ -1,13 +1,13 @@
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 
-const MessageCard = ({ number, text, image, time, handleMessage }: { number: String, text: String, image: any, time: String, handleMessage: () => void }) => {
-    const [dark, setDark] = useState(false);
+const MessageCard = ({ number, text, image, time, handleMessage,dark,setDark }: { number: String, text: String, image: any, time: String, handleMessage: () => void,dark?:boolean,setDark?:()=> void }) => {
+
 
     return (
         <>
-            <div onClick={handleMessage} className={`w-full h-16 border-b border-slate-300 active:bg-amber-100  flex justify-center items-center mb-1 hover:bg-slate-100 cursor-pointer`}>
-                <div onClick={() => setDark(!dark)} className={"w-11/12 h-[70%] flex relative"}>
+            <div onClick={handleMessage} className={`w-full h-16 border-b ${dark ? 'bg-slate-100' : ''} border-slate-300 active:bg-amber-100  flex justify-center items-center mb-1 hover:bg-slate-100 cursor-pointer`}>
+                <div onClick={setDark}  className={"w-11/12 h-[70%] flex relative"}>
                     <div>
                         <Image src={image ? image : "/profile.png"} alt={"Image"} width={40} height={40} className={"rounded-full"} />
                     </div>

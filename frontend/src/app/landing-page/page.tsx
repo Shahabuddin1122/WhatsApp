@@ -13,6 +13,7 @@ import {convertDate} from "@/utils/convertDate";
 
 const LandingPage = () => {
     const [ClickedUser,setClickedUser] = useState();
+    const [selectedCard, setSelectedCard] = useState<number | null>(null);
     const router = useRouter();
     const idParams = useSearchParams();
     const id = decodeURIComponent(idParams.get('id') || '');
@@ -30,7 +31,7 @@ const LandingPage = () => {
         <>
             <div className={"min-w-[765px] w-full h-[100px] bg-green-600 flex justify-center"}>
                 <div className={"w-11/12 h-[700px] mt-5 bg-slate-100  flex overflow-hidden"}>
-                    <div className={"min-w-[350px] sm:w-1/2 md:w-2/5 lg:w-1/3 h-full bg-white shadow-xl  relative"}>
+                    <div className={"min-w-[350px] sm:w-1/2 md:w-2/5 lg:w-1/3 h-full bg-white drop-shadow-2xl  relative"}>
                         <div className={"w-full h-12 px-2 flex justify-between items-center bg-slate-100"}>
                             <div className={"w-10 h-10 flex justify-center items-center rounded-full"}>
                                 {!error && !isLoading && data.imgLink ? <Image
@@ -57,14 +58,23 @@ const LandingPage = () => {
                                 <Image src={"/filter.svg"} alt={"filter"} width={20} height={20}/>
                             </div>
                         </div>
-                        <div className={"w-full h-[600px] relative overflow-y-scroll"}>
+                        <div className={"w-full h-[600px] relative overflow-y-scroll  border-l"}>
                             <div className={"w-full h-auto"}>
                                 <div className="flex flex-col justify-center">
                                     {!LoadConversation && !errorConversation && Conversation && Conversation.map((data:any, key:number) =>
                                         <div key={key}>
                                                 {data.conversation.receiverNumber.map((receiver:any, index:number) => {
                                                     if(receiver.number == user){ return null}
-                                                    return <MessageCard key={index} handleMessage={()=> setClickedUser(data.conversation.id)} number={receiver.name ? receiver.name : receiver.number} text={data.message.message} image={receiver.imgLink ? receiver.imgLink : avatarImage} time={data.message.date? convertDate({date:data.message.date,flag:true}) : "Long ago"} />
+                                                    return <MessageCard
+                                                        key={index}
+                                                        dark={selectedCard == key}
+                                                        setDark={() => setSelectedCard(key)}
+                                                        handleMessage={()=> setClickedUser(data.conversation.id)}
+                                                        number={receiver.name ? receiver.name : receiver.number}
+                                                        text={data.message.message}
+                                                        image={receiver.imgLink ? receiver.imgLink : avatarImage}
+                                                        time={data.message.date? convertDate({date:data.message.date,flag:true}) : "Long ago"}
+                                                    />
                                                 }
                                             )}
                                         </div>
@@ -73,7 +83,7 @@ const LandingPage = () => {
                             </div>
                         </div>
                         <div
-                            className={"w-full h-[50px] absolute bottom-0 border-t border-gray-300 bg-white flex justify-center items-center shadow-2xl"}>
+                            className={"w-full h-[50px] absolute bottom-0 border-t border-l border-gray-300 bg-white flex justify-center items-center shadow-2xl"}>
                             <div className={"w-11/12 h-[90%] flex gap-x-5 items-center"}>
                                 <Image src={"/whats_app.png"} alt={"Whatsapp"} height={35} width={35}/>
                                 <p className={"text-green-700 text-md md:text-sm "}>Get WhatsApp for Windows <span
